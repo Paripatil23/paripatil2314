@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pari Patil | Aspiring Engineer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: "Times New Roman", Times, serif;
+    }
+    .modal {
+      transition: all 0.3s ease-in-out;
+    }
+  </style>
+</head>
+<body class="bg-green-50 text-gray-800">
+
+  <!-- Welcome Section -->
+  <section class="bg-green-100 p-8 text-center">
+    <img src="C:\Users\dayap\OneDrive\Desktop\pari patil\WhatsApp Image 2025-05-19 at 11.06.45_14851cc0.jpg" alt="Pari Patil" class="w-40 h-40 rounded-full mx-auto mb-4 shadow-lg" />
+    <h1 class="text-4xl font-bold mb-2 text-green-800">Hello! I'm <span class="italic">Pari Patil</span></h1>
+    <p class="text-lg text-green-700">Welcome to my portfolio – a glimpse into my <span class="font-semibold">journey</span>, <span class="font-semibold">skills</span>, and <span class="font-semibold">aspirations</span>.</p>
+  </section>
+
+  <!-- Buttons for Popups -->
+  <section class="max-w-3xl mx-auto text-center mt-8 space-y-4">
+    <button onclick="toggleModal('about')" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">About Me</button>
+    <button onclick="toggleModal('achievements')" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">Achievements</button>
+    <button onclick="toggleModal('goals')" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">Future Goals</button>
+    <button onclick="toggleModal('personal')" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">My Personal Side</button>
+  </section>
+
+  <!-- Modal Template -->
+  <div id="modalBackdrop" class="fixed inset-0 bg-black bg-opacity-50 hidden z-40" onclick="closeAllModals()"></div>
+
+  <!-- About Me Modal -->
+  <div id="about" class="modal fixed z-50 inset-0 flex items-center justify-center hidden">
+    <div class="bg-white p-8 rounded-lg shadow-xl w-full max-w-lg">
+      <h2 class="text-2xl font-bold text-green-700 mb-4">About Me</h2>
+      <p><span class="font-bold">Name:</span> Pari Patil</p>
+      <p><span class="font-bold">Location:</span> Mumbai, India</p>
+      <p><span class="font-bold">Education:</span> B.Tech in Electronics and Computer Science Engineering, St.John College Of Engineering And Management</p>
+      <p><span class="font-bold">Languages Known:</span> English, Hindi, Marathi</p>
+      <button onclick="closeAllModals()" class="mt-4 bg-green-600 text-white px-4 py-2 rounded">Close</button>
+    </div>
+  </div>
+
+  <!-- Achievements Modal -->
+  <div id="achievements" class="modal fixed z-50 inset-0 flex items-center justify-center hidden">
+    <div class="bg-white p-8 rounded-lg shadow-xl w-full max-w-lg">
+      <h2 class="text-2xl font-bold text-green-700 mb-4">Achievements</h2>
+      <ul class="list-disc list-inside text-gray-800">
+        <li><span class="font-semibold">Participated</span> in a college Hackathon – <span class="italic">IoT Smart Farming</span>.</li>
+        <li>Certified in <span class="italic">CCNA</span> via Coursera.</li>
+        <li>Worked on: "<span class="italic">Smart Car Robo</span>" – mini project.</li>
+      </ul>
+      <button onclick="closeAllModals()" class="mt-4 bg-green-600 text-white px-4 py-2 rounded">Close</button>
+    </div>
+  </div>
+
+  <!-- Future Goals Modal -->
+  <div id="goals" class="modal fixed z-50 inset-0 flex items-center justify-center hidden">
+    <div class="bg-white p-8 rounded-lg shadow-xl w-full max-w-lg">
+      <h2 class="text-2xl font-bold text-green-700 mb-4">Future Goals</h2>
+      <p>I aim to become a skilled <span class="font-semibold">software Engineer</span> focusing on <span class="italic">automation</span> and <span class="italic">artificial intelligence</span>. My long-term vision is to found a startup offering <span class="italic">AI-powered educational and healthcare tools</span> that are accessible to all.</p>
+      <button onclick="closeAllModals()" class="mt-4 bg-green-600 text-white px-4 py-2 rounded">Close</button>
+    </div>
+  </div>
+
+  <!-- Personal Side Modal -->
+  <div id="personal" class="modal fixed z-50 inset-0 flex items-center justify-center hidden">
+    <div class="bg-white p-8 rounded-lg shadow-xl w-full max-w-lg">
+      <h2 class="text-2xl font-bold text-green-700 mb-4">My Personal Side</h2>
+      <p><span class="font-bold">Hobbies:</span> Reading <span class="italic">sci-fi</span>, playing <span class="italic">chess</span>, and tinkering with <span class="italic">electronics</span>.</p>
+      <p><span class="font-bold">Role Model:</span> <span class="italic">Dr. A.P.J. Abdul Kalam</span>.</p>
+      <p><span class="font-bold">Favorite Book:</span> "<span class="italic">The Wings Of Fire</span>" by A.P.J Kalam.</p>
+      <p><span class="font-bold">Website:</span> <span class="italic">GitHub</span> – For collaboration and learning.</p>
+      <p><span class="font-bold">Startup I Admire:</span> <span class="italic">AI powered</span> – Educational and Healthcare Tools.</p>
+      <p><span class="font-bold">Volunteering:</span> Taught digital literacy to rural students via an NGO initiative.</p>
+      <button onclick="closeAllModals()" class="mt-4 bg-green-600 text-white px-4 py-2 rounded">Close</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-green-100 p-4 text-center mt-10">
+    <p class="text-green-800">Thanks for visiting! Contact me at: <a href="123pari7031@sjcem.edu.in" class="underline text-green-700">123pari7031@sjcem.edu.in</a></p>
+  </footer>
+
+  <!-- Modal Script -->
+  <script>
+    function toggleModal(id) {
+      closeAllModals();
+      document.getElementById('modalBackdrop').classList.remove('hidden');
+      document.getElementById(id).classList.remove('hidden');
+    }
+
+    function closeAllModals() {
+      document.getElementById('modalBackdrop').classList.add('hidden');
+      document.querySelectorAll('.modal').forEach(modal => modal.classList.add('hidden'));
+    }
+  </script>
+</body>
+</html>
