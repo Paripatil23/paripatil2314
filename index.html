@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="transition duration-300">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pari Patil | Aspiring Engineer</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class'
+    }
+  </script>
   <style>
     body {
       font-family: "Times New Roman", Times, serif;
@@ -14,16 +19,24 @@
     }
   </style>
 </head>
-<body class="bg-green-50 text-gray-800">
+<body class="bg-green-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 transition duration-300">
+
+  <!-- Header with Toggle and API Info -->
+  <header class="flex justify-between items-center p-4 bg-green-100 dark:bg-gray-800">
+    <div>
+      <span id="weather">🌡️ Loading...</span> | <span id="quote">💭 Loading...</span>
+    </div>
+    <button onclick="toggleTheme()" class="bg-green-600 text-white px-4 py-1 rounded hover:bg-green-700">Toggle Dark Mode</button>
+  </header>
 
   <!-- Welcome Section -->
-  <section class="bg-green-100 p-8 text-center">
-    <img src="https://raw.githubusercontent.com/Paripatil23/paripatil2314/refs/heads/main/profile.jpg" alt="Pari Patil" class="w-40 h-40 rounded-full mx-auto mb-4 shadow-lg" />
-    <h1 class="text-4xl font-bold mb-2 text-green-800">Hello! I'm <span class="italic">Pari Patil</span></h1>
-    <p class="text-lg text-green-700">Welcome to my portfolio – a glimpse into my <span class="font-semibold">journey</span>, <span class="font-semibold">skills</span>, and <span class="font-semibold">aspirations</span>.</p>
+  <section class="bg-green-100 dark:bg-gray-800 p-8 text-center">
+    <img src="C:\Users\dayap\OneDrive\Desktop\pari patil\profile.jpg" alt="Pari Patil" class="w-40 h-40 rounded-full mx-auto mb-4 shadow-lg" />
+    <h1 class="text-4xl font-bold mb-2 text-green-800 dark:text-green-300">Hello! I'm <span class="italic">Pari Patil</span></h1>
+    <p class="text-lg text-green-700 dark:text-green-200">Welcome to my portfolio – a glimpse into my <span class="font-semibold">journey</span>, <span class="font-semibold">skills</span>, and <span class="font-semibold">aspirations</span>.</p>
   </section>
 
-  <!-- Buttons for Popups -->
+  <!-- Buttons -->
   <section class="max-w-3xl mx-auto text-center mt-8 space-y-4">
     <button onclick="toggleModal('about')" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">About Me</button>
     <button onclick="toggleModal('achievements')" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">Achievements</button>
@@ -31,73 +44,83 @@
     <button onclick="toggleModal('personal')" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">My Personal Side</button>
   </section>
 
-  <!-- Modal Template -->
+  <!-- Modal Background -->
   <div id="modalBackdrop" class="fixed inset-0 bg-black bg-opacity-50 hidden z-40" onclick="closeAllModals()"></div>
 
-  <!-- About Me Modal -->
-  <div id="about" class="modal fixed z-50 inset-0 flex items-center justify-center hidden">
-    <div class="bg-white p-8 rounded-lg shadow-xl w-full max-w-lg">
-      <h2 class="text-2xl font-bold text-green-700 mb-4">About Me</h2>
+  <!-- About Modal -->
+  <div id="about" class="modal fixed inset-0 flex items-center justify-center hidden z-50">
+    <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-xl w-full max-w-lg">
+      <h2 class="text-2xl font-bold text-green-700 dark:text-green-300 mb-4">About Me</h2>
       <p><span class="font-bold">Name:</span> Pari Patil</p>
       <p><span class="font-bold">Location:</span> Mumbai, India</p>
-      <p><span class="font-bold">Education:</span> B.Tech in Electronics and Computer Science Engineering, St.John College Of Engineering And Management</p>
-      <p><span class="font-bold">Languages Known:</span> English, Hindi, Marathi</p>
+      <p><span class="font-bold">Education:</span> B.Tech in Electronics and Computer Science Engineering</p>
+      <p><span class="font-bold">Languages:</span> English, Hindi, Marathi</p>
       <button onclick="closeAllModals()" class="mt-4 bg-green-600 text-white px-4 py-2 rounded">Close</button>
     </div>
   </div>
 
   <!-- Achievements Modal -->
-  <div id="achievements" class="modal fixed z-50 inset-0 flex items-center justify-center hidden">
-    <div class="bg-white p-8 rounded-lg shadow-xl w-full max-w-lg">
-      <h2 class="text-2xl font-bold text-green-700 mb-4">Achievements</h2>
-      <ul class="list-disc list-inside text-gray-800">
-        <li><span class="font-semibold">Participated</span> in a college Hackathon – <span class="italic">IoT Smart Farming</span>.</li>
-        <li>Certified in <span class="italic">CCNA</span> via Coursera.</li>
-        <li>Worked on: "<span class="italic">Smart Car Robo</span>" – mini project.</li>
+  <div id="achievements" class="modal fixed inset-0 flex items-center justify-center hidden z-50">
+    <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-xl w-full max-w-lg">
+      <h2 class="text-2xl font-bold text-green-700 dark:text-green-300 mb-4">Achievements</h2>
+      <ul class="list-disc list-inside">
+        <li>Hackathon – <em>IoT Smart Farming</em></li>
+        <li>Certified in <em>CCNA</em></li>
+        <li>Mini Project – <em>Smart Car Robo</em></li>
       </ul>
       <button onclick="closeAllModals()" class="mt-4 bg-green-600 text-white px-4 py-2 rounded">Close</button>
     </div>
   </div>
 
-  <!-- Future Goals Modal -->
-  <div id="goals" class="modal fixed z-50 inset-0 flex items-center justify-center hidden">
-    <div class="bg-white p-8 rounded-lg shadow-xl w-full max-w-lg">
-      <h2 class="text-2xl font-bold text-green-700 mb-4">Future Goals</h2>
-      <p>I aim to become a skilled <span class="font-semibold">software Engineer</span> focusing on <span class="italic">automation</span> and <span class="italic">artificial intelligence</span>. My long-term vision is to found a startup offering <span class="italic">AI-powered educational and healthcare tools</span> that are accessible to all.</p>
+  <!-- Goals Modal -->
+  <div id="goals" class="modal fixed inset-0 flex items-center justify-center hidden z-50">
+    <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-xl w-full max-w-lg">
+      <h2 class="text-2xl font-bold text-green-700 dark:text-green-300 mb-4">Future Goals</h2>
+      <p>I aim to become a skilled <strong>Software Engineer</strong> focusing on <em>Automation</em> and <em>Artificial Intelligence</em>. I dream of founding a startup that delivers <em>AI-powered education and healthcare tools</em>.</p>
       <button onclick="closeAllModals()" class="mt-4 bg-green-600 text-white px-4 py-2 rounded">Close</button>
     </div>
   </div>
 
   <!-- Personal Side Modal -->
-  <div id="personal" class="modal fixed z-50 inset-0 flex items-center justify-center hidden">
-    <div class="bg-white p-8 rounded-lg shadow-xl w-full max-w-lg">
-      <h2 class="text-2xl font-bold text-green-700 mb-4">My Personal Side</h2>
-      <p><span class="font-bold">Hobbies:</span> Reading <span class="italic">sci-fi</span>, playing <span class="italic">chess</span>, and tinkering with <span class="italic">electronics</span>.</p>
-      <p><span class="font-bold">Role Model:</span> <span class="italic">Dr. A.P.J. Abdul Kalam</span>.</p>
-      <p><span class="font-bold">Favorite Book:</span> "<span class="italic">The Wings Of Fire</span>" by A.P.J Kalam.</p>
-      <p><span class="font-bold">Website:</span> <span class="italic">GitHub</span> – For collaboration and learning.</p>
-      <p><span class="font-bold">Startup I Admire:</span> <span class="italic">AI powered</span> – Educational and Healthcare Tools.</p>
-      <p><span class="font-bold">Volunteering:</span> Taught digital literacy to rural students via an NGO initiative.</p>
+  <div id="personal" class="modal fixed inset-0 flex items-center justify-center hidden z-50">
+    <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-xl w-full max-w-lg">
+      <h2 class="text-2xl font-bold text-green-700 dark:text-green-300 mb-4">My Personal Side</h2>
+      <p><strong>Hobbies:</strong> Reading <em>sci-fi</em>, playing <em>chess</em>, tinkering with <em>electronics</em>.</p>
+      <p><strong>Role Model:</strong> Dr. A.P.J. Abdul Kalam</p>
+      <p><strong>Favorite Book:</strong> <em>The Wings of Fire</em></p>
+      <p><strong>Volunteering:</strong> Teaching digital literacy to rural students.</p>
       <button onclick="closeAllModals()" class="mt-4 bg-green-600 text-white px-4 py-2 rounded">Close</button>
     </div>
   </div>
 
+  <!-- Location Map Section -->
+  <section class="bg-green-100 dark:bg-gray-800 p-8 text-center mt-8">
+    <h2 class="text-2xl font-bold text-green-700 dark:text-green-300 mb-4">My Location</h2>
+    <iframe 
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3769.9999999999995!2d72.8471043154353!3d19.076090287057!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c7b8c8c8c8c8%3A0x3be7c7b8c8c8c8c8!2sMumbai%2C%20Maharashtra%2C%20India!5e0!3m2!1sen!2sus!4v1630000000000!5m2!1sen!2sus" 
+      width="600" 
+      height="450" 
+      style="border:0;" 
+      allowfullscreen="" 
+      loading="lazy">
+    </iframe>
+  </section>
+
   <!-- Footer -->
-  <footer class="bg-green-100 p-4 text-center mt-10">
-    <p class="text-green-800">Thanks for visiting! Contact me at: 
-                    <p><i class="fas fa-envelope me-2 text-primary"></i> raj.kushwaha@example.com</p>
-                    <p><i class="fas fa-map-marker-alt me-2 text-danger"></i> Mumbai, India</p>
-                    
-                    <h3 class="mt-5 mb-3">Connect With Me</h3>
-                    <div class="d-flex">
-                        <a href="https://github.com/Raj05Kushwaha" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
-                        <a href="https://x.com/Raj_Noob05?t=FdHcdSlx5jW8-OhHtzeXUg&s=09" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a>
-                        <a href="https://www.instagram.com/rajj._13/" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
-</p>
+  <footer class="bg-green-100 dark:bg-gray-800 p-4 text-center mt-10">
+    <p class="text-green-800 dark:text-green-200">
+      Contact me at: 
+      <a href="mailto:123pari7031@sjcem.edu.in" class="underline">123pari7031@sjcem.edu.in</a> |
+      <a href="https://instagram.com/your_username" target="_blank" class="underline">@parriiiiii_23</a>
+    </p>
   </footer>
 
-  <!-- Modal Script -->
+  <!-- Scripts -->
   <script>
+    function toggleTheme() {
+      document.documentElement.classList.toggle('dark');
+    }
+
     function toggleModal(id) {
       closeAllModals();
       document.getElementById('modalBackdrop').classList.remove('hidden');
@@ -108,6 +131,34 @@
       document.getElementById('modalBackdrop').classList.add('hidden');
       document.querySelectorAll('.modal').forEach(modal => modal.classList.add('hidden'));
     }
+
+    // API Calls
+    const apiKey = '39f9d647f97cdc7de56059f61fb90825'; // Replace this
+
+    async function loadWeather() {
+      try {
+        const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=Mumbai&appid=${apiKey}&units=metric`);
+        const data = await res.json();
+        const temp = data.main.temp.toFixed(1);
+        document.getElementById('weather').textContent = `🌡️ ${temp}°C in Mumbai`;
+      } catch {
+        document.getElementById('weather').textContent = '🌡️ 32 degree';
+      }
+    }
+
+    async function loadQuote() {
+      try {
+        const res = await fetch('https://api.quotable.io/random');
+        const data = await res.json();
+        document.getElementById('quote').textContent = `💭 "${data.content}"`;
+      } catch {
+        document.getElementById('quote').textContent = '💭 Eat an apple a day,keep doctor away';
+      }
+    }
+
+    loadWeather();
+    loadQuote();
   </script>
+
 </body>
 </html>
