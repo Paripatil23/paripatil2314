@@ -4,24 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pari Patil | Aspiring Engineer</title>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            pink: {
-              pastel: '#FFD1DC',
-              light: '#FFB6C1',
-              medium: '#FF69B4',
-            }
-          }
-        }
-      }
+      darkMode: 'class'
     }
   </script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     body {
       font-family: "Times New Roman", Times, serif;
@@ -29,35 +18,46 @@
     .modal {
       transition: all 0.3s ease-in-out;
     }
+    .weather-icon {
+      width: 24px;
+      height: 24px;
+      display: inline-block;
+      vertical-align: middle;
+    }
   </style>
 </head>
-<body class="bg-pink-pastel dark:bg-gray-800 text-gray-800 dark:text-gray-100 transition duration-300">
+<body class="bg-pink-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 transition duration-300">
 
-  <!-- Header -->
-  <header class="flex justify-between items-center p-4 bg-white dark:bg-gray-700 shadow-sm">
-    <div>
-      <span id="weather">🌡️ Loading...</span> | <span id="quote">💭 Loading...</span>
+  <!-- Header with Toggle and Weather Info -->
+  <header class="relative p-4 bg-pink-100 dark:bg-gray-800">
+    <div class="absolute top-4 left-4 bg-white/80 dark:bg-gray-700/80 px-4 py-2 rounded shadow text-sm z-50">
+      <div id="weather" class="flex items-center">
+        <span id="weather-icon">⏳</span>
+        <span id="weather-temp" class="ml-1">Loading weather...</span>
+      </div>
+      <div id="quote">💭 Loading inspirational quote...</div>
     </div>
-    <button onclick="toggleTheme()" class="bg-pink-medium text-white px-4 py-1 rounded hover:bg-pink-600">Toggle Dark Mode</button>
+    <div class="flex justify-end">
+      <button onclick="toggleTheme()" class="bg-pink-600 text-white px-4 py-1 rounded hover:bg-pink-700">Toggle Dark Mode</button>
+    </div>
   </header>
 
   <!-- Welcome Section -->
-  <section class="bg-white dark:bg-gray-700 p-8 text-center shadow-md">
-    <img src="https://raw.githubusercontent.com/Paripatil23/paripatil2314/refs/heads/main/profile.jpg" alt="Pari Patil" class="w-40 h-40 rounded-full mx-auto mb-4 shadow-lg border-4 border-pink-light" />
-    <h1 class="text-4xl font-bold mb-2 text-pink-600 dark:text-pink-300">Hello! I'm <span class="italic">Pari Patil</span></h1>
-    <p class="text-lg text-gray-700 dark:text-gray-200">Welcome to my portfolio – a glimpse into my <span class="font-semibold">journey</span>, <span class="font-semibold">skills</span>, and <span class="font-semibold">aspirations</span>.</p>
+  <section class="bg-pink-100 dark:bg-gray-800 p-8 text-center">
+    <img src="https://raw.githubusercontent.com/Paripatil23/paripatil2314/refs/heads/main/profile.jpg" alt="Pari Patil" class="w-40 h-40 rounded-full mx-auto mb-4 shadow-lg" />
+    <h1 class="text-4xl font-bold mb-2 text-pink-800 dark:text-pink-300">Hello! I'm <span class="italic">Pari Patil</span></h1>
+    <p class="text-lg text-pink-700 dark:text-pink-200">Welcome to my portfolio – a glimpse into my <span class="font-semibold">journey</span>, <span class="font-semibold">skills</span>, and <span class="font-semibold">aspirations</span>.</p>
   </section>
 
-  <!-- Buttons Section -->
+  <!-- Buttons -->
   <section class="max-w-3xl mx-auto text-center mt-8 space-y-4">
-    <button onclick="toggleModal('about')" class="bg-pink-medium text-white px-6 py-2 rounded-lg hover:bg-pink-600 shadow">About Me</button>
-    <button onclick="toggleModal('achievements')" class="bg-pink-medium text-white px-6 py-2 rounded-lg hover:bg-pink-600 shadow">Achievements</button>
-    <button onclick="toggleModal('goals')" class="bg-pink-medium text-white px-6 py-2 rounded-lg hover:bg-pink-600 shadow">Future Goals</button>
-    <button onclick="toggleModal('personal')" class="bg-pink-medium text-white px-6 py-2 rounded-lg hover:bg-pink-600 shadow">My Personal Side</button>
+    <button onclick="toggleModal('about')" class="bg-pink-600 text-white px-6 py-2 rounded-lg hover:bg-pink-700">About Me</button>
+    <button onclick="toggleModal('achievements')" class="bg-pink-600 text-white px-6 py-2 rounded-lg hover:bg-pink-700">Achievements</button>
+    <button onclick="toggleModal('goals')" class="bg-pink-600 text-white px-6 py-2 rounded-lg hover:bg-pink-700">Future Goals</button>
+    <button onclick="toggleModal('personal')" class="bg-pink-600 text-white px-6 py-2 rounded-lg hover:bg-pink-700">My Personal Side</button>
   </section>
 
-  <!-- Modals Here (unchanged from your version) -->
-    <!-- Modal Background -->
+  <!-- Modal Background -->
   <div id="modalBackdrop" class="fixed inset-0 bg-black bg-opacity-50 hidden z-40" onclick="closeAllModals()"></div>
 
   <!-- About Modal -->
@@ -106,38 +106,51 @@
     </div>
   </div>
 
-  <!-- Location Map -->
-<div class="contact-card bg-pink-pastel dark:bg-gray-600 p-4 rounded-lg shadow-md">
-            <div class="flex items-center">
-              <div class="bg-pink-medium text-white p-3 rounded-full mr-4">
-                <i class="fas fa-map-marker-alt text-lg"></i>
-              </div>
-              <div>
-                <h3 class="font-semibold text-gray-800 dark:text-white">Location</h3>
-                <p class="text-gray-600 dark:text-gray-300">Mumbai, India</p>
-              </div>
-            </div>
-          </div>
+  <!-- Live Map -->
+  <!-- Combined Contact and Map Section -->
+  <section class="max-w-4xl mx-auto mt-12 p-6 bg-white dark:bg-gray-700 rounded-xl shadow-lg">
+    <div class="grid md:grid-cols-2 gap-8">
+      <!-- Compact Map -->
+      <div class="space-y-4">
+        <h2 class="text-2xl font-bold text-pink-600 dark:text-pink-300">My Location</h2>
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3769.9999999999995!2d72.8471043154353!3d19.076090287057!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c7b8c8c8c8c8%3A0x3be7c7b8c8c8c8c8!2sMumbai%2C%20Maharashtra%2C%20India!5e0!3m2!1sen!2sus!4v1630000000000!5m2!1sen!2sus" 
+          width="100%" 
+          class="compact-map shadow-md"
+          allowfullscreen="" 
+          loading="lazy">
+        </iframe>
+      </div>
 
   <!-- Contact Section -->
-  <section class="text-center py-8 bg-white dark:bg-gray-700 shadow-md">
-    <h2 class="text-2xl font-bold mb-4 text-pink-600 dark:text-pink-300">Contact Information</h2>
-    <p class="text-gray-700 dark:text-gray-200"><i class="fas fa-envelope text-pink-500"></i> 123pari7031@sjcem.edu.in</p>
-    <p class="text-gray-700 dark:text-gray-200"><i class="fas fa-map-marker-alt text-pink-500"></i> Mumbai, India</p>
-  </section>
-
-  <!-- Connect With Me Section -->
-  <section class="text-center mb-12 bg-white dark:bg-gray-700 p-8 shadow-md">
-    <h2 class="text-2xl font-bold mb-4 text-pink-600 dark:text-pink-300">Connect With Me</h2>
-    <div class="flex justify-center gap-6">
-      <a href="https://github.com/Paripatil23" target="_blank" class="bg-pink-medium text-white p-4 rounded-full hover:bg-pink-600 transition shadow">
-        <i class="fab fa-github fa-lg"></i>
+  <section class="max-w-3xl mx-auto mt-12 p-6 bg-pink-100 dark:bg-gray-800 rounded-lg shadow">
+    <h2 class="text-2xl font-bold text-center text-pink-800 dark:text-pink-300 mb-6">Let's Connect</h2>
+    <div class="flex flex-wrap justify-center gap-6">
+      <a href="mailto:123pari7031@sjcem.edu.in" class="flex items-center text-gray-700 dark:text-gray-200 hover:text-pink-600 dark:hover:text-pink-400 transition">
+        <i class="fas fa-envelope text-2xl mr-2"></i>
+        <span>Email Me</span>
       </a>
-      <a href="https://www.instagram.com/parriiiiii_23/" target="_blank" class="bg-pink-medium text-white p-4 rounded-full hover:bg-pink-600 transition shadow">
-        <i class="fab fa-instagram fa-lg"></i>
+      <a href="https://instagram.com/parriiiiii_23" target="_blank" class="flex items-center text-gray-700 dark:text-gray-200 hover:text-pink-600 dark:hover:text-pink-400 transition">
+        <i class="fab fa-instagram text-2xl mr-2"></i>
+        <span>Instagram</span>
+      </a>
+      <a href="https://linkedin.com/in/yourprofile" target="_blank" class="flex items-center text-gray-700 dark:text-gray-200 hover:text-pink-600 dark:hover:text-pink-400 transition">
+        <i class="fab fa-linkedin text-2xl mr-2"></i>
+        <span>LinkedIn</span>
+      </a>
+      <a href="https://github.com/yourusername" target="_blank" class="flex items-center text-gray-700 dark:text-gray-200 hover:text-pink-600 dark:hover:text-pink-400 transition">
+        <i class="fab fa-github text-2xl mr-2"></i>
+        <span>GitHub</span>
       </a>
     </div>
   </section>
+
+  <!-- Footer -->
+  <footer class="bg-pink-100 dark:bg-gray-800 p-4 text-center mt-10">
+    <p class="text-pink-800 dark:text-pink-200">
+      &copy; 2023 Pari Patil. All rights reserved.
+    </p>
+  </footer>
 
   <!-- Scripts -->
   <script>
@@ -156,33 +169,62 @@
       document.querySelectorAll('.modal').forEach(modal => modal.classList.add('hidden'));
     }
 
-    // API Calls
-    const apiKey = '39f9d647f97cdc7de56059f61fb90825';
-
+    // Weather API with icons
     async function loadWeather() {
       try {
-        const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=Mumbai&appid=${apiKey}&units=metric`);
-        const data = await res.json();
-        const temp = data.main.temp.toFixed(1);
-        document.getElementById('weather').textContent = `🌡️ ${temp}°C in Mumbai`;
-      } catch {
-        document.getElementById('weather').textContent = '🌡️ 32 degree';
+        // Using a free weather API (you might need to sign up for a free API key)
+        const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=19.07&longitude=72.87&current_weather=true');
+        const data = await response.json();
+        
+        if (data.current_weather) {
+          const temp = data.current_weather.temperature;
+          const weatherCode = data.current_weather.weathercode;
+          
+          document.getElementById('weather-temp').textContent = `${temp}°C in Mumbai`;
+          
+          // Set appropriate weather icon based on weather code
+          const icon = getWeatherIcon(weatherCode);
+          document.getElementById('weather-icon').textContent = icon;
+        }
+      } catch (error) {
+        console.error('Error fetching weather:', error);
+        document.getElementById('weather-temp').textContent = 'Weather unavailable';
       }
     }
 
+    // Simple weather code to icon mapping
+    function getWeatherIcon(code) {
+      // WMO Weather interpretation codes (https://open-meteo.com/en/docs)
+      if (code === 0) return '☀️'; // Clear sky
+      if (code >= 1 && code <= 3) return '🌤️'; // Mainly clear, partly cloudy
+      if (code >= 45 && code <= 48) return '🌫️'; // Fog
+      if (code >= 51 && code <= 67) return '🌧️'; // Drizzle/Rain
+      if (code >= 71 && code <= 77) return '❄️'; // Snow
+      if (code >= 80 && code <= 82) return '🌧️'; // Rain showers
+      if (code >= 85 && code <= 86) return '❄️'; // Snow showers
+      if (code >= 95 && code <= 99) return '⛈️'; // Thunderstorm
+      return '🌡️'; // Default icon
+    }
+    
+
+    // Quote API
     async function loadQuote() {
       try {
         const res = await fetch('https://api.quotable.io/random');
         const data = await res.json();
-        document.getElementById('quote').textContent = `💭 "${data.content}"`;
+        document.getElementById('quote').textContent = `💭 "${data.content}" - ${data.author}`;
       } catch {
-        document.getElementById('quote').textContent = '💭 Eat an apple a day, keep doctor away';
+        document.getElementById('quote').textContent = '💭 "The only way to do great work is to love what you do." - Steve Jobs';
       }
     }
 
-    loadWeather();
-    loadQuote();
+    // Load data when page loads
+    window.addEventListener('DOMContentLoaded', () => {
+      loadWeather();
+      loadQuote();
+    });
   </script>
-
+  <!-- Font Awesome for icons -->
+  <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
 </body>
-</html>
+</html>    
