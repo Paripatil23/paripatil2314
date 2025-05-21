@@ -29,6 +29,10 @@
     .modal {
       transition: all 0.3s ease-in-out;
     }
+    .compact-map {
+      height: 250px;
+      border-radius: 12px;
+    }
   </style>
 </head>
 <body class="bg-pink-pastel dark:bg-gray-800 text-gray-800 dark:text-gray-100 transition duration-300">
@@ -43,7 +47,7 @@
 
   <!-- Welcome Section -->
   <section class="bg-white dark:bg-gray-700 p-8 text-center shadow-md">
-    <img src="https://raw.githubusercontent.com/Paripatil23/paripatil2314/refs/heads/main/profile.jpg" alt="Pari Patil" class="w-40 h-40 rounded-full mx-auto mb-4 shadow-lg border-4 border-pink-light" />
+    <img src="C:\Users\dayap\OneDrive\Desktop\pari patil\profile.jpg" alt="Pari Patil" class="w-40 h-40 rounded-full mx-auto mb-4 shadow-lg border-4 border-pink-light" />
     <h1 class="text-4xl font-bold mb-2 text-pink-600 dark:text-pink-300">Hello! I'm <span class="italic">Pari Patil</span></h1>
     <p class="text-lg text-gray-700 dark:text-gray-200">Welcome to my portfolio – a glimpse into my <span class="font-semibold">journey</span>, <span class="font-semibold">skills</span>, and <span class="font-semibold">aspirations</span>.</p>
   </section>
@@ -58,55 +62,59 @@
 
   <!-- Modals Here (unchanged from your version) -->
 
-  <!-- Location Map -->
-  <section class="bg-white dark:bg-gray-700 p-8 text-center mt-8 shadow-md">
-    <h2 class="text-2xl font-bold text-pink-600 dark:text-pink-300 mb-4">My Location</h2>
-    <iframe 
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3769.9999999999995!2d72.8471043154353!3d19.076090287057!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c7b8c8c8c8c8%3A0x3be7c7b8c8c8c8c8!2sMumbai%2C%20Maharashtra%2C%20India!5e0!3m2!1sen!2sus!4v1630000000000!5m2!1sen!2sus" 
-      width="600" 
-      height="450" 
-      style="border:0;" 
-      allowfullscreen="" 
-      loading="lazy"
-      class="shadow-lg">
-    </iframe>
+  <!-- Combined Contact and Map Section -->
+  <section class="max-w-4xl mx-auto mt-12 p-6 bg-white dark:bg-gray-700 rounded-xl shadow-lg">
+    <div class="grid md:grid-cols-2 gap-8">
+      <!-- Compact Map -->
+      <div class="space-y-4">
+        <h2 class="text-2xl font-bold text-pink-600 dark:text-pink-300">My Location</h2>
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3769.9999999999995!2d72.8471043154353!3d19.076090287057!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c7b8c8c8c8c8%3A0x3be7c7b8c8c8c8c8!2sMumbai%2C%20Maharashtra%2C%20India!5e0!3m2!1sen!2sus!4v1630000000000!5m2!1sen!2sus" 
+          width="100%" 
+          class="compact-map shadow-md"
+          allowfullscreen="" 
+          loading="lazy">
+        </iframe>
+      </div>
+
+      <!-- Compact Contact Information -->
+      <div class="space-y-6">
+        <h2 class="text-2xl font-bold text-pink-600 dark:text-pink-300">Get In Touch</h2>
+        
+        <div class="space-y-4">
+          <div class="flex items-start space-x-3">
+            <i class="fas fa-envelope text-pink-500 mt-1"></i>
+            <div>
+              <p class="font-medium text-gray-700 dark:text-gray-200">Email</p>
+              <p class="text-gray-600 dark:text-gray-300">123pari7031@sjcem.edu.in</p>
+            </div>
+          </div>
+          
+          <div class="flex items-start space-x-3">
+            <i class="fas fa-map-marker-alt text-pink-500 mt-1"></i>
+            <div>
+              <p class="font-medium text-gray-700 dark:text-gray-200">Location</p>
+              <p class="text-gray-600 dark:text-gray-300">Mumbai, India</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Social Links -->
+        <div class="pt-4">
+          <h3 class="text-lg font-semibold mb-3 text-pink-600 dark:text-pink-300">Connect With Me</h3>
+          <div class="flex space-x-4">
+            <a href="https://github.com/Paripatil23" target="_blank" class="bg-pink-medium text-white p-3 rounded-full hover:bg-pink-600 transition shadow-lg">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="https://www.instagram.com/parriiiiii_23/" target="_blank" class="bg-pink-medium text-white p-3 rounded-full hover:bg-pink-600 transition shadow-lg">
+              <i class="fab fa-instagram"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <!-- Contact Section -->
-  <section class="text-center py-8 bg-white dark:bg-gray-700 shadow-md">
-    <h2 class="text-2xl font-bold mb-4 text-pink-600 dark:text-pink-300">Contact Information</h2>
-    <p class="text-gray-700 dark:text-gray-200"><i class="fas fa-envelope text-pink-500"></i> 123pari7031@sjcem.edu.in</p>
-    <p class="text-gray-700 dark:text-gray-200"><i class="fas fa-map-marker-alt text-pink-500"></i> Mumbai, India</p>
-  </section>
-
-  <!-- Contact Section -->
-<section class="text-center py-8 bg-white dark:bg-gray-700 shadow-md rounded-lg max-w-2xl mx-auto my-8">
-  <h2 class="text-2xl font-bold mb-6 text-pink-600 dark:text-pink-300">Contact Information</h2>
-  
-  <div class="space-y-4 text-gray-700 dark:text-gray-200">
-    <div class="flex items-center justify-center space-x-3">
-      <i class="fas fa-envelope text-pink-500 text-xl"></i>
-      <p class="text-lg">123pari7031@sjcem.edu.in</p>
-    </div>
-    
-    <div class="flex items-center justify-center space-x-3">
-      <i class="fas fa-map-marker-alt text-pink-500 text-xl"></i>
-      <p class="text-lg">Mumbai, India</p>
-    </div>
-  </div>
-  
-  <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-600">
-    <h3 class="text-xl font-semibold mb-4 text-pink-600 dark:text-pink-300">Connect With Me</h3>
-    <div class="flex justify-center gap-6">
-      <a href="https://github.com/Paripatil23" target="_blank" class="bg-pink-medium text-white p-3 rounded-full hover:bg-pink-600 transition shadow-lg">
-        <i class="fab fa-github fa-lg"></i>
-      </a>
-      <a href="https://www.instagram.com/parriiiiii_23/" target="_blank" class="bg-pink-medium text-white p-3 rounded-full hover:bg-pink-600 transition shadow-lg">
-        <i class="fab fa-instagram fa-lg"></i>
-      </a>
-    </div>
-  </div>
-</section>
   <!-- Scripts -->
   <script>
     function toggleTheme() {
