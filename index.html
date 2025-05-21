@@ -10,7 +10,6 @@
       darkMode: 'class'
     }
   </script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     body {
       font-family: "Times New Roman", Times, serif;
@@ -22,22 +21,22 @@
 </head>
 <body class="bg-green-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 transition duration-300">
 
-  <!-- Header -->
+  <!-- Header with Toggle and API Info -->
   <header class="flex justify-between items-center p-4 bg-green-100 dark:bg-gray-800">
     <div>
-      <span id="weather">🌡️ Loading...</span> | <span id="quote">💭 Loading...</span>
+      <span id="weather">🌡 Loading...</span> | <span id="quote">💭 Loading...</span>
     </div>
     <button onclick="toggleTheme()" class="bg-green-600 text-white px-4 py-1 rounded hover:bg-green-700">Toggle Dark Mode</button>
   </header>
 
   <!-- Welcome Section -->
   <section class="bg-green-100 dark:bg-gray-800 p-8 text-center">
-    <img src="https://raw.githubusercontent.com/Paripatil23/paripatil2314/refs/heads/main/profile.jpg" alt="Pari Patil" class="w-40 h-40 rounded-full mx-auto mb-4 shadow-lg" />
+    <img src="C:\Users\dayap\OneDrive\Desktop\pari patil\profile.jpg" alt="Pari Patil" class="w-40 h-40 rounded-full mx-auto mb-4 shadow-lg" />
     <h1 class="text-4xl font-bold mb-2 text-green-800 dark:text-green-300">Hello! I'm <span class="italic">Pari Patil</span></h1>
     <p class="text-lg text-green-700 dark:text-green-200">Welcome to my portfolio – a glimpse into my <span class="font-semibold">journey</span>, <span class="font-semibold">skills</span>, and <span class="font-semibold">aspirations</span>.</p>
   </section>
 
-  <!-- Buttons Section -->
+  <!-- Buttons -->
   <section class="max-w-3xl mx-auto text-center mt-8 space-y-4">
     <button onclick="toggleModal('about')" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">About Me</button>
     <button onclick="toggleModal('achievements')" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">Achievements</button>
@@ -45,39 +44,63 @@
     <button onclick="toggleModal('personal')" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">My Personal Side</button>
   </section>
 
-  <!-- Modals Here (unchanged from your version) -->
+  <!-- Modal Background -->
+  <div id="modalBackdrop" class="fixed inset-0 bg-black bg-opacity-50 hidden z-40" onclick="closeAllModals()"></div>
 
-  <!-- Location Map -->
-  <section class="bg-green-100 dark:bg-gray-800 p-8 text-center mt-8">
-    <h2 class="text-2xl font-bold text-green-700 dark:text-green-300 mb-4">My Location</h2>
-    <iframe 
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3769.9999999999995!2d72.8471043154353!3d19.076090287057!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c7b8c8c8c8c8%3A0x3be7c7b8c8c8c8c8!2sMumbai%2C%20Maharashtra%2C%20India!5e0!3m2!1sen!2sus!4v1630000000000!5m2!1sen!2sus" 
-      
-      style="border:0;" 
-      allowfullscreen="" 
-      loading="lazy">
-    </iframe>
-  </section>
-
-  <!-- Contact Section -->
-  <section class="text-center py-8">
-    <h2 class="text-2xl font-bold mb-4">Contact Information</h2>
-    <p><i class="fas fa-envelope text-blue-600"></i> 123pari7031@sjcem.edu.in</p>
-    <p><i class="fas fa-map-marker-alt text-red-500"></i> Mumbai, India</p>
-  </section>
-
-  <!-- Connect With Me Section -->
-  <section class="text-center mb-12">
-    <h2 class="text-2xl font-bold mb-4">Connect With Me</h2>
-    <div class="flex justify-center gap-6">
-      <a href="https://github.com/Paripatil23" target="_blank" class="bg-orange-500 text-white p-4 rounded-full hover:bg-orange-600 transition">
-        <i class="fab fa-github fa-lg"></i>
-      </a>
-         <a href="https://www.instagram.com/parriiiiii_23/" target="_blank" class="bg-orange-500 text-white p-4 rounded-full hover:bg-orange-600 transition">
-        <i class="fab fa-instagram fa-lg"></i>
-      </a>
+  <!-- About Modal -->
+  <div id="about" class="modal fixed inset-0 flex items-center justify-center hidden z-50">
+    <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-xl w-full max-w-lg">
+      <h2 class="text-2xl font-bold text-green-700 dark:text-green-300 mb-4">About Me</h2>
+      <p><span class="font-bold">Name:</span> Pari Patil</p>
+      <p><span class="font-bold">Location:</span> Mumbai, India</p>
+      <p><span class="font-bold">Education:</span> B.Tech in Electronics and Computer Science Engineering</p>
+      <p><span class="font-bold">Languages:</span> English, Hindi, Marathi</p>
+      <button onclick="closeAllModals()" class="mt-4 bg-green-600 text-white px-4 py-2 rounded">Close</button>
     </div>
-  </section>
+  </div>
+
+  <!-- Achievements Modal -->
+  <div id="achievements" class="modal fixed inset-0 flex items-center justify-center hidden z-50">
+    <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-xl w-full max-w-lg">
+      <h2 class="text-2xl font-bold text-green-700 dark:text-green-300 mb-4">Achievements</h2>
+      <ul class="list-disc list-inside">
+        <li>Hackathon – <em>IoT Smart Farming</em></li>
+        <li>Certified in <em>CCNA</em></li>
+        <li>Mini Project – <em>Smart Car Robo</em></li>
+      </ul>
+      <button onclick="closeAllModals()" class="mt-4 bg-green-600 text-white px-4 py-2 rounded">Close</button>
+    </div>
+  </div>
+
+  <!-- Goals Modal -->
+  <div id="goals" class="modal fixed inset-0 flex items-center justify-center hidden z-50">
+    <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-xl w-full max-w-lg">
+      <h2 class="text-2xl font-bold text-green-700 dark:text-green-300 mb-4">Future Goals</h2>
+      <p>I aim to become a skilled <strong>Software Engineer</strong> focusing on <em>Automation</em> and <em>Artificial Intelligence</em>. I dream of founding a startup that delivers <em>AI-powered education and healthcare tools</em>.</p>
+      <button onclick="closeAllModals()" class="mt-4 bg-green-600 text-white px-4 py-2 rounded">Close</button>
+    </div>
+  </div>
+
+  <!-- Personal Side Modal -->
+  <div id="personal" class="modal fixed inset-0 flex items-center justify-center hidden z-50">
+    <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-xl w-full max-w-lg">
+      <h2 class="text-2xl font-bold text-green-700 dark:text-green-300 mb-4">My Personal Side</h2>
+      <p><strong>Hobbies:</strong> Reading <em>sci-fi</em>, playing <em>chess</em>, tinkering with <em>electronics</em>.</p>
+      <p><strong>Role Model:</strong> Dr. A.P.J. Abdul Kalam</p>
+      <p><strong>Favorite Book:</strong> <em>The Wings of Fire</em></p>
+      <p><strong>Volunteering:</strong> Teaching digital literacy to rural students.</p>
+      <button onclick="closeAllModals()" class="mt-4 bg-green-600 text-white px-4 py-2 rounded">Close</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-green-100 dark:bg-gray-800 p-4 text-center mt-10">
+    <p class="text-green-800 dark:text-green-200">
+      Contact me at: 
+      <a href="mailto:123pari7031@sjcem.edu.in" class="underline">123pari7031@sjcem.edu.in</a> |
+      <a href="https://instagram.com/your_username" target="_blank" class="underline">@parriiiiii_23</a>
+    </p>
+  </footer>
 
   <!-- Scripts -->
   <script>
@@ -97,16 +120,16 @@
     }
 
     // API Calls
-    const apiKey = '39f9d647f97cdc7de56059f61fb90825';
+    const apiKey = 'your_openweathermap_api_key_here'; // Replace this
 
     async function loadWeather() {
       try {
-        const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=Mumbai&appid=${apiKey}&units=metric`);
+        const res = await fetch(https://api.openweathermap.org/data/2.5/weather?q=Mumbai&appid=${apiKey}&units=metric);
         const data = await res.json();
         const temp = data.main.temp.toFixed(1);
-        document.getElementById('weather').textContent = `🌡️ ${temp}°C in Mumbai`;
+        document.getElementById('weather').textContent = 🌡 ${temp}°C in Mumbai;
       } catch {
-        document.getElementById('weather').textContent = '🌡️ 32 degree';
+        document.getElementById('weather').textContent = '🌡 Weather unavailable';
       }
     }
 
@@ -114,9 +137,9 @@
       try {
         const res = await fetch('https://api.quotable.io/random');
         const data = await res.json();
-        document.getElementById('quote').textContent = `💭 "${data.content}"`;
+        document.getElementById('quote').textContent = 💭 "${data.content}";
       } catch {
-        document.getElementById('quote').textContent = '💭 Eat an apple a day, keep doctor away';
+        document.getElementById('quote').textContent = '💭 Thought unavailable';
       }
     }
 
