@@ -29,9 +29,11 @@
     .modal {
       transition: all 0.3s ease-in-out;
     }
-    .compact-map {
-      height: 250px;
-      border-radius: 12px;
+    .contact-card {
+      transition: transform 0.3s ease;
+    }
+    .contact-card:hover {
+      transform: translateY(-5px);
     }
   </style>
 </head>
@@ -42,7 +44,7 @@
     <div>
       <span id="weather">🌡️ Loading...</span> | <span id="quote">💭 Loading...</span>
     </div>
-    <button onclick="toggleTheme()" class="bg-pink-medium text-white px-4 py-1 rounded hover:bg-pink-600">Toggle Dark Mode</button>
+    <button onclick="toggleTheme()" class="bg-pink-medium text-white px-4 py-1 rounded hover:bg-pink-600 transition">Toggle Dark Mode</button>
   </header>
 
   <!-- Welcome Section -->
@@ -54,61 +56,139 @@
 
   <!-- Buttons Section -->
   <section class="max-w-3xl mx-auto text-center mt-8 space-y-4">
-    <button onclick="toggleModal('about')" class="bg-pink-medium text-white px-6 py-2 rounded-lg hover:bg-pink-600 shadow">About Me</button>
-    <button onclick="toggleModal('achievements')" class="bg-pink-medium text-white px-6 py-2 rounded-lg hover:bg-pink-600 shadow">Achievements</button>
-    <button onclick="toggleModal('goals')" class="bg-pink-medium text-white px-6 py-2 rounded-lg hover:bg-pink-600 shadow">Future Goals</button>
-    <button onclick="toggleModal('personal')" class="bg-pink-medium text-white px-6 py-2 rounded-lg hover:bg-pink-600 shadow">My Personal Side</button>
+    <button onclick="toggleModal('about')" class="bg-pink-medium text-white px-6 py-2 rounded-lg hover:bg-pink-600 shadow transition">About Me</button>
+    <button onclick="toggleModal('achievements')" class="bg-pink-medium text-white px-6 py-2 rounded-lg hover:bg-pink-600 shadow transition">Achievements</button>
+    <button onclick="toggleModal('goals')" class="bg-pink-medium text-white px-6 py-2 rounded-lg hover:bg-pink-600 shadow transition">Future Goals</button>
+    <button onclick="toggleModal('personal')" class="bg-pink-medium text-white px-6 py-2 rounded-lg hover:bg-pink-600 shadow transition">My Personal Side</button>
   </section>
 
   <!-- Modals Here (unchanged from your version) -->
+   <!-- Modal Background -->
+  <div id="modalBackdrop" class="fixed inset-0 bg-black bg-opacity-50 hidden z-40" onclick="closeAllModals()"></div>
 
-  <!-- Combined Contact and Map Section -->
-  <section class="max-w-4xl mx-auto mt-12 p-6 bg-white dark:bg-gray-700 rounded-xl shadow-lg">
+  <!-- About Modal -->
+  <div id="about" class="modal fixed inset-0 flex items-center justify-center hidden z-50">
+    <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-xl w-full max-w-lg">
+      <h2 class="text-2xl font-bold text-pink-700 dark:text-pink-300 mb-4">About Me</h2>
+      <p><span class="font-bold">Name:</span> Pari Patil</p>
+      <p><span class="font-bold">Location:</span> Mumbai, India</p>
+      <p><span class="font-bold">Education:</span> B.Tech in Electronics and Computer Science Engineering</p>
+      <p><span class="font-bold">Languages:</span> English, Hindi, Marathi</p>
+      <button onclick="closeAllModals()" class="mt-4 bg-pink-600 text-white px-4 py-2 rounded">Close</button>
+    </div>
+  </div>
+
+  <!-- Achievements Modal -->
+  <div id="achievements" class="modal fixed inset-0 flex items-center justify-center hidden z-50">
+    <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-xl w-full max-w-lg">
+      <h2 class="text-2xl font-bold text-pink-700 dark:text-pink-300 mb-4">Achievements</h2>
+      <ul class="list-disc list-inside">
+        <li>Hackathon – <em>IoT Smart Farming</em></li>
+        <li>Certified in <em>CCNA</em></li>
+        <li>Mini Project – <em>Smart Car Robo</em></li>
+      </ul>
+      <button onclick="closeAllModals()" class="mt-4 bg-pink-600 text-white px-4 py-2 rounded">Close</button>
+    </div>
+  </div>
+
+  <!-- Goals Modal -->
+  <div id="goals" class="modal fixed inset-0 flex items-center justify-center hidden z-50">
+    <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-xl w-full max-w-lg">
+      <h2 class="text-2xl font-bold text-pink-700 dark:text-pink-300 mb-4">Future Goals</h2>
+      <p>I aim to become a skilled <strong>Software Engineer</strong> focusing on <em>Automation</em> and <em>Artificial Intelligence</em>. I dream of founding a startup that delivers <em>AI-powered education and healthcare tools</em>.</p>
+      <button onclick="closeAllModals()" class="mt-4 bg-pink-600 text-white px-4 py-2 rounded">Close</button>
+    </div>
+  </div>
+
+  <!-- Personal Side Modal -->
+  <div id="personal" class="modal fixed inset-0 flex items-center justify-center hidden z-50">
+    <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-xl w-full max-w-lg">
+      <h2 class="text-2xl font-bold text-pink-700 dark:text-pink-300 mb-4">My Personal Side</h2>
+      <p><strong>Hobbies:</strong> Reading <em>sci-fi</em>, playing <em>chess</em>, tinkering with <em>electronics</em>.</p>
+      <p><strong>Role Model:</strong> Dr. A.P.J. Abdul Kalam</p>
+      <p><strong>Favorite Book:</strong> <em>The Wings of Fire</em></p>
+      <p><strong>Volunteering:</strong> Teaching digital literacy to rural students.</p>
+      <button onclick="closeAllModals()" class="mt-4 bg-pink-600 text-white px-4 py-2 rounded">Close</button>
+    </div>
+  </div>
+
+
+  <!-- Location & Contact Section - Redesigned -->
+  <section class="max-w-6xl mx-auto px-4 py-12">
     <div class="grid md:grid-cols-2 gap-8">
-      <!-- Compact Map -->
-      <div class="space-y-4">
-        <h2 class="text-2xl font-bold text-pink-600 dark:text-pink-300">My Location</h2>
-        <iframe 
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3769.9999999999995!2d72.8471043154353!3d19.076090287057!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c7b8c8c8c8c8%3A0x3be7c7b8c8c8c8c8!2sMumbai%2C%20Maharashtra%2C%20India!5e0!3m2!1sen!2sus!4v1630000000000!5m2!1sen!2sus" 
-          width="100%" 
-          class="compact-map shadow-md"
-          allowfullscreen="" 
-          loading="lazy">
-        </iframe>
+      <!-- Map Section -->
+      <div class="bg-white dark:bg-gray-700 rounded-xl shadow-xl overflow-hidden">
+        <div class="p-6">
+          <h2 class="text-2xl font-bold text-pink-600 dark:text-pink-300 mb-4 flex items-center">
+            <i class="fas fa-map-marker-alt mr-3"></i> My Location
+          </h2>
+          <p class="text-gray-700 dark:text-gray-300 mb-4">
+            Based in the vibrant city of Mumbai, where dreams meet opportunities.
+          </p>
+        </div>
+        <div class="h-80 w-full relative">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3769.9999999999995!2d72.8471043154353!3d19.076090287057!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c7b8c8c8c8c8%3A0x3be7c7b8c8c8c8c8!2sMumbai%2C%20Maharashtra%2C%20India!5e0!3m2!1sen!2sus!4v1630000000000!5m2!1sen!2sus" 
+            class="absolute inset-0 w-full h-full border-0"
+            allowfullscreen="" 
+            loading="lazy">
+          </iframe>
+        </div>
       </div>
 
-      <!-- Compact Contact Information -->
-      <div class="space-y-6">
-        <h2 class="text-2xl font-bold text-pink-600 dark:text-pink-300">Get In Touch</h2>
+      <!-- Contact Section - Redesigned -->
+      <div class="bg-white dark:bg-gray-700 rounded-xl shadow-xl p-6">
+        <h2 class="text-2xl font-bold text-pink-600 dark:text-pink-300 mb-6 flex items-center">
+          <i class="fas fa-paper-plane mr-3"></i> Get In Touch
+        </h2>
         
-        <div class="space-y-4">
-          <div class="flex items-start space-x-3">
-            <i class="fas fa-envelope text-pink-500 mt-1"></i>
-            <div>
-              <p class="font-medium text-gray-700 dark:text-gray-200">Email</p>
-              <p class="text-gray-600 dark:text-gray-300">123pari7031@sjcem.edu.in</p>
+        <div class="space-y-5">
+          <!-- Email Card -->
+          <div class="contact-card bg-pink-pastel dark:bg-gray-600 p-4 rounded-lg shadow-md">
+            <div class="flex items-center">
+              <div class="bg-pink-medium text-white p-3 rounded-full mr-4">
+                <i class="fas fa-envelope text-lg"></i>
+              </div>
+              <div>
+                <h3 class="font-semibold text-gray-800 dark:text-white">Email</h3>
+                <a href="mailto:123pari7031@sjcem.edu.in" class="text-gray-600 dark:text-gray-300 hover:text-pink-600 dark:hover:text-pink-300 transition">
+                  123pari7031@sjcem.edu.in
+                </a>
+              </div>
             </div>
           </div>
           
-          <div class="flex items-start space-x-3">
-            <i class="fas fa-map-marker-alt text-pink-500 mt-1"></i>
-            <div>
-              <p class="font-medium text-gray-700 dark:text-gray-200">Location</p>
-              <p class="text-gray-600 dark:text-gray-300">Mumbai, India</p>
+          <!-- Location Card -->
+          <div class="contact-card bg-pink-pastel dark:bg-gray-600 p-4 rounded-lg shadow-md">
+            <div class="flex items-center">
+              <div class="bg-pink-medium text-white p-3 rounded-full mr-4">
+                <i class="fas fa-map-marker-alt text-lg"></i>
+              </div>
+              <div>
+                <h3 class="font-semibold text-gray-800 dark:text-white">Location</h3>
+                <p class="text-gray-600 dark:text-gray-300">Mumbai, India</p>
+              </div>
             </div>
           </div>
-        </div>
-
-        <!-- Social Links -->
-        <div class="pt-4">
-          <h3 class="text-lg font-semibold mb-3 text-pink-600 dark:text-pink-300">Connect With Me</h3>
-          <div class="flex space-x-4">
-            <a href="https://github.com/Paripatil23" target="_blank" class="bg-pink-medium text-white p-3 rounded-full hover:bg-pink-600 transition shadow-lg">
-              <i class="fab fa-github"></i>
-            </a>
-            <a href="https://www.instagram.com/parriiiiii_23/" target="_blank" class="bg-pink-medium text-white p-3 rounded-full hover:bg-pink-600 transition shadow-lg">
-              <i class="fab fa-instagram"></i>
-            </a>
+          
+          <!-- Social Media Card -->
+          <div class="contact-card bg-pink-pastel dark:bg-gray-600 p-4 rounded-lg shadow-md">
+            <div class="flex items-center">
+              <div class="bg-pink-medium text-white p-3 rounded-full mr-4">
+                <i class="fas fa-share-alt text-lg"></i>
+              </div>
+              <div>
+                <h3 class="font-semibold text-gray-800 dark:text-white mb-2">Social Media</h3>
+                <div class="flex space-x-4">
+                  <a href="https://github.com/Paripatil23" target="_blank" class="bg-pink-medium text-white p-3 rounded-full hover:bg-pink-600 transition shadow">
+                    <i class="fab fa-github"></i>
+                  </a>
+                  <a href="https://www.instagram.com/parriiiiii_23/" target="_blank" class="bg-pink-medium text-white p-3 rounded-full hover:bg-pink-600 transition shadow">
+                    <i class="fab fa-instagram"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
