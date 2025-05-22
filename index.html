@@ -58,7 +58,8 @@
       Welcome to my portfolio – a glimpse into my <span class="font-semibold">journey</span>, <span class="font-semibold">skills</span>, and <span class="font-semibold">aspirations</span>.
     </p>
   </section>
-<!-- Button Navigation -->
+
+  <!-- Button Navigation -->
   <section class="max-w-3xl mx-auto text-center space-y-4">
     <button onclick="toggleModal('about')" class="bg-pink-600 text-white px-6 py-2 rounded-lg hover:bg-pink-700 transition">About Me</button>
     <button onclick="toggleModal('achievements')" class="bg-pink-600 text-white px-6 py-2 rounded-lg hover:bg-pink-700 transition">Achievements</button>
@@ -113,49 +114,7 @@
       <button onclick="closeAllModals()" class="mt-2 bg-pink-600 text-white px-4 py-2 rounded hover:bg-pink-700 transition">Close</button>
     </div>
   </div>
-<script>
-  function toggleModal(modalId) {
-    const modal = document.getElementById(modalId);
-    const backdrop = document.getElementById('modalBackdrop');
 
-    // Show backdrop
-    backdrop.classList.remove('hidden');
-    setTimeout(() => {
-      backdrop.classList.add('opacity-100');
-      backdrop.classList.remove('opacity-0');
-    }, 10);
-
-    // Show modal
-    modal.classList.remove('hidden');
-    setTimeout(() => {
-      modal.classList.add('opacity-100', 'scale-100');
-      modal.classList.remove('opacity-0', 'scale-95');
-    }, 10);
-  }
-
-  function closeAllModals() {
-    const modals = document.querySelectorAll('.modal');
-    const backdrop = document.getElementById('modalBackdrop');
-
-    modals.forEach((modal) => {
-      modal.classList.remove('opacity-100', 'scale-100');
-      modal.classList.add('opacity-0', 'scale-95');
-      setTimeout(() => {
-        modal.classList.add('hidden');
-      }, 300);
-    });
-
-    backdrop.classList.remove('opacity-100');
-    backdrop.classList.add('opacity-0');
-    setTimeout(() => {
-      backdrop.classList.add('hidden');
-    }, 300);
-  }
-</script>
-
-  
-      
-       
   <!-- Live Map Section -->
   <div class="mt-10 flex justify-center px-4">
     <iframe 
