@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en" class="transition duration-300">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pari Patil | Aspiring Engineer</title>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class'
+    }
+  </script>
+  <style>
+    body {
+      font-family: "Times New Roman", Times, serif;
+    }
+    /* Smooth modal transition */
+    //
+    .modal {
+      transition: opacity 0.3s ease-in-out;
+    }
+    .modal.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .modal.hide {
+      opacity: 0;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-b from-pink-50 to-white dark:from-gray-900 dark:to-gray-800 text-gray-800 dark:text-gray-100 transition duration-300">
+
+  <!-- Sticky Header with Weather & Quote -->
+  <header class="sticky top-0 z-50 p-4 bg-white dark:bg-gray-800 shadow-md">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <div class="flex items-center space-x-4">
+        <div id="weather" class="flex items-center text-sm">
+          <span id="weather-icon" class="mr-1">⏳</span>
+          <span id="weather-temp">Loading weather...</span>
+        </div>
+        <div id="quote" class="text-sm">
+          💭 Loading inspirational quote...
+        </div>
+      </div>
+      <button onclick="toggleTheme()" class="bg-pink-600 text-white px-4 py-1 rounded hover:bg-pink-700 transition">
+        Toggle Dark Mode
+      </button>
+    </div>
+  </header>
+
+  <!-- Welcome Section -->
+  <section class="max-w-4xl mx-auto px-4 py-12 text-center">
+    <img src="https://raw.githubusercontent.com/Paripatil23/paripatil2314/refs/heads/main/profile.jpg" alt="Pari Patil" class="w-40 h-40 md:w-48 md:h-48 rounded-full mx-auto mb-6 shadow-xl border-4 border-pink-200 dark:border-pink-700" />
+    <h1 class="text-4xl md:text-5xl font-bold mb-4 text-pink-800 dark:text-pink-300">Hello! I'm <span class="italic">Pari Patil</span></h1>
+    <p class="text-lg md:text-xl text-pink-700 dark:text-pink-200">
+      Welcome to my portfolio – a glimpse into my <span class="font-semibold">journey</span>, <span class="font-semibold">skills</span>, and <span class="font-semibold">aspirations</span>.
+    </p>
+  </section>
+
+  <!-- Button Navigation -->
+  <section class="max-w-3xl mx-auto text-center mt-8 space-y-4">
+    <button onclick="toggleModal('about')" class="bg-pink-600 text-white px-6 py-2 rounded-lg hover:bg-pink-700 transition">About Me</button>
+    <button onclick="toggleModal('achievements')" class="bg-pink-600 text-white px-6 py-2 rounded-lg hover:bg-pink-700 transition">Achievements</button>
+    <button onclick="toggleModal('goals')" class="bg-pink-600 text-white px-6 py-2 rounded-lg hover:bg-pink-700 transition">Future Goals</button>
+    <button onclick="toggleModal('personal')" class="bg-pink-600 text-white px-6 py-2 rounded-lg hover:bg-pink-700 transition">My Personal Side</button>
+  </section>
+
+  <!-- Modal Backdrop -->
+  <div id="modalBackdrop" class="fixed inset-0 bg-black bg-opacity-50 hidden z-40" onclick="closeAllModals()"></div>
+
+  <!-- Modal Template -->
+  <div id="about" class="modal fixed inset-0 flex items-center justify-center hidden z-50">
+    <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-xl w-full max-w-lg">
+      <h2 class="text-2xl font-bold text-pink-700 dark:text-pink-300 mb-4">About Me</h2>
+      <p><span class="font-bold">Name:</span> Pari Patil</p>
+      <p><span class="font-bold">Location:</span> Mumbai, India</p>
+      <p><span class="font-bold">Education:</span> B.Tech in Electronics and Computer Science Engineering</p>
+      <p><span class="font-bold">Languages:</span> English, Hindi, Marathi</p>
+      <button onclick="closeAllModals()" class="mt-4 bg-pink-600 text-white px-4 py-2 rounded hover:bg-pink-700 transition">Close</button>
+    </div>
+  </div>
+
+  <div id="achievements" class="modal fixed inset-0 flex items-center justify-center hidden z-50">
+    <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-xl w-full max-w-lg">
+      <h2 class="text-2xl font-bold text-pink-700 dark:text-pink-300 mb-4">Achievements</h2>
+      <ul class="list-disc list-inside space-y-2">
+        <li>Hackathon – <em>IoT Smart Farming</em></li>
+        <li>Certified in <em>CCNA</em></li>
+        <li>Mini Project – <em>Smart Car Robo</em></li>
+      </ul>
+      <button onclick="closeAllModals()" class="mt-4 bg-pink-600 text-white px-4 py-2 rounded hover:bg-pink-700 transition">Close</button>
+    </div>
+  </div>
+
+  <div id="goals" class="modal fixed inset-0 flex items-center justify-center hidden z-50">
+    <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-xl w-full max-w-lg">
+      <h2 class="text-2xl font-bold text-pink-700 dark:text-pink-300 mb-4">Future Goals</h2>
+      <p class="mb-4">
+        I aim to become a skilled <strong>Software Engineer</strong> focusing on <em>Automation</em> and <em>Artificial Intelligence</em>. I dream of founding a startup that delivers <em>AI-powered education and healthcare tools</em>.
+      </p>
+      <button onclick="closeAllModals()" class="mt-2 bg-pink-600 text-white px-4 py-2 rounded hover:bg-pink-700 transition">Close</button>
+    </div>
+  </div>
+
+  <div id="personal" class="modal fixed inset-0 flex items-center justify-center hidden z-50">
+    <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-xl w-full max-w-lg">
+      <h2 class="text-2xl font-bold text-pink-700 dark:text-pink-300 mb-4">My Personal Side</h2>
+      <p class="mb-2"><strong>Hobbies:</strong> Reading <em>sci-fi</em>, playing <em>chess</em>, tinkering with <em>electronics</em>.</p>
+      <p class="mb-2"><strong>Role Model:</strong> Dr. A.P.J. Abdul Kalam</p>
+      <p class="mb-2"><strong>Favorite Book:</strong> <em>The Wings of Fire</em></p>
+      <p class="mb-4"><strong>Volunteering:</strong> Teaching digital literacy to rural students.</p>
+      <button onclick="closeAllModals()" class="mt-2 bg-pink-600 text-white px-4 py-2 rounded hover:bg-pink-700 transition">Close</button>
+    </div>
+  </div>
+
+  <!-- Live Map Section -->
+  <div class="mt-10 flex justify-center px-4">
+    <iframe 
+      class="w-full max-w-3xl h-96 rounded-xl shadow-lg border"
+      src="https://www.google.com/maps?q=Mumbai&output=embed"
+      allowfullscreen
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+    ></iframe>
+  </div>
+
+    <section class="max-w-3xl mx-auto mt-12 p-6 bg-pink-100 dark:bg-gray-800 rounded-lg shadow">
+    <h2 class="text-2xl font-bold text-center text-pink-800 dark:text-pink-300 mb-6">Let's Connect</h2>
+    <div class="flex flex-wrap justify-center gap-6">
+      <a href="mailto:123pari7031@sjcem.edu.in" class="flex items-center text-gray-700 dark:text-gray-200 hover:text-pink-600 dark:hover:text-pink-400 transition">
+        <i class="fas fa-envelope text-2xl mr-2"></i>
+        <span>Email Me</span>
+      </a>
+      <a href="https://instagram.com/parriiiiii_23" target="_blank" class="flex items-center text-gray-700 dark:text-gray-200 hover:text-pink-600 dark:hover:text-pink-400 transition">
+        <i class="fab fa-instagram text-2xl mr-2"></i>
+        <span>Instagram</span>
+      </a>
+      <a href="https://linkedin.com/in/yourprofile" target="_blank" class="flex items-center text-gray-700 dark:text-gray-200 hover:text-pink-600 dark:hover:text-pink-400 transition">
+        <i class="fab fa-linkedin text-2xl mr-2"></i>
+        <span>LinkedIn</span>
+      </a>
+      <a href="https://github.com/yourusername" target="_blank" class="flex items-center text-gray-700 dark:text-gray-200 hover:text-pink-600 dark:hover:text-pink-400 transition">
+        <i class="fab fa-github text-2xl mr-2"></i>
+        <span>GitHub</span>
+      </a>
+    </div>
+  </section>
+
+
+  <!-- Footer -->
+  <footer class="bg-pink-100 dark:bg-gray-800 p-4 text-center mt-10">
+    <p class="text-pink-800 dark:text-pink-200">
+      &copy; 2023 Pari Patil. All rights reserved.
+    </p>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Toggle dark/light mode
+    function toggleTheme() {
+      document.documentElement.classList.toggle('dark');
+    }
+
+    // Modal toggle functions with smooth transitions
+    function toggleModal(id) {
+      closeAllModals();
+      document.getElementById('modalBackdrop').classList.remove('hidden');
+      const modal = document.getElementById(id);
+      modal.classList.remove('hidden');
+      setTimeout(() => { modal.classList.add('show') }, 10);
+    }
+
+    function closeAllModals() {
+      document.getElementById('modalBackdrop').classList.add('hidden');
+      document.querySelectorAll('.modal').forEach(modal => {
+        modal.classList.remove('show');
+        setTimeout(() => { modal.classList.add('hidden') }, 300);
+      });
+    }
+
+    // Load weather information from API
+    async function loadWeather() {
+      try {
+        const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=19.07&longitude=72.87&current_weather=true');
+        const data = await response.json();
+        if (data.current_weather) {
+          const temp = data.current_weather.temperature;
+          const weatherCode = data.current_weather.weathercode;
+          document.getElementById('weather-temp').textContent = `${temp}°C in Mumbai`;
+          document.getElementById('weather-icon').textContent = getWeatherIcon(weatherCode);
+        }
+      } catch (error) {
+        console.error('Error fetching weather:', error);
+        document.getElementById('weather-temp').textContent = 'Weather unavailable';
+      }
+    }
+
+    // Weather code to icon mapping
+    function getWeatherIcon(code) {
+      if (code === 0) return '☀️';
+      if (code >= 1 && code <= 3) return '🌤️';
+      if (code >= 45 && code <= 48) return '🌫️';
+      if (code >= 51 && code <= 67) return '🌧️';
+      if (code >= 71 && code <= 77) return '❄️';
+      if (code >= 80 && code <= 82) return '🌧️';
+      if (code >= 85 && code <= 86) return '❄️';
+      if (code >= 95 && code <= 99) return '⛈️';
+      return '🌡️';
+    }
+
+    // Load quote from API
+    async function loadQuote() {
+      try {
+        const res = await fetch('https://api.quotable.io/random');
+        const data = await res.json();
+        document.getElementById('quote').textContent = `💭 "${data.content}" - ${data.author}`;
+      } catch {
+        document.getElementById('quote').textContent = '💭 "The only way to do great work is to love what you do." - Steve Jobs';
+      }
+    }
+
+    // Initiate data load on DOMContentLoaded
+    window.addEventListener('DOMContentLoaded', () => {
+      loadWeather();
+      loadQuote();
+    });
+  </script>
+</body>
+</html>
