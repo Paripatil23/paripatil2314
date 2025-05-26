@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" class="transition duration-300">
 <head>
@@ -793,7 +794,135 @@
       loadWeather();
       loadQuote();
     });
-  </script>
+     // Load data when page loads
+    window.addEventListener('DOMContentLoaded', () => {
+      loadWeather();
+      loadQuote();
+    });
+
+    // ====== ADD THE NEW CART FUNCTIONALITY CODE HERE ======
+    // Cart functionality
+    let cart = [];
+
+    function addToCart(name, price, image) {
+        // Check if item already exists in cart
+        const existingItem = cart.find(item => item.name === name);
+        
+        if (existingItem) {
+            existingItem.quantity += 1;
+        } else {
+            cart.push({
+                name: name,
+                price: price,
+                image: image,
+                quantity: 1
+            });
+        }
+        
+        updateCartUI();
+        toggleCart(); // Open the cart when adding an item
+    }
+
+    function removeFromCart(index) {
+        cart.splice(index, 1);
+        updateCartUI();
+    }
+
+    function updateCartUI() {
+        const cartItemsContainer = document.getElementById('cart-items');
+        const cartCount = document.getElementById('cart-count');
+        const cartSubtotal = document.getElementById('cart-subtotal');
+        const cartTotal = document.getElementById('cart-total');
+        const checkoutBtn = document.getElementById('checkout-btn');
+        const emptyCartMessage = document.getElementById('empty-cart-message');
+        
+        // Update cart count
+        const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+        cartCount.textContent = totalItems;
+        
+        // Clear existing items
+        cartItemsContainer.innerHTML = '';
+        
+        if (cart.length === 0) {
+            emptyCartMessage.classList.remove('hidden');
+            checkoutBtn.disabled = true;
+        } else {
+            emptyCartMessage.classList.add('hidden');
+            checkoutBtn.disabled = false;
+            
+            // Add each item to the cart UI
+            cart.forEach((item, index) => {
+                const itemElement = document.createElement('div');
+                itemElement.className = 'flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg';
+                itemElement.innerHTML = `
+                    <div class="flex items-center">
+                        <img src="${item.image}" alt="${item.name}" class="w-12 h-12 object-cover rounded mr-3">
+                        <div>
+                            <h4 class="font-medium">${item.name}</h4>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">$${item.price} x ${item.quantity}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="mr-4 font-medium">$${(item.price * item.quantity).toFixed(2)}</span>
+                        <button onclick="removeFromCart(${index})" class="text-red-500 hover:text-red-700">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                `;
+                cartItemsContainer.appendChild(itemElement);
+            });
+        }
+        
+        // Calculate totals
+        const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+        cartSubtotal.textContent = `$${subtotal.toFixed(2)}`;
+        cartTotal.textContent = `$${subtotal.toFixed(2)}`;
+    }
+
+    function toggleCart() {
+        const cartSidebar = document.getElementById('cart-sidebar');
+        cartSidebar.classList.toggle('translate-x-full');
+    }
+
+    // Product modal functionality
+    let currentProduct = null;
+
+    function openProductModal(name, price, description, image) {
+        currentProduct = { name, price, description, image };
+        
+        document.getElementById('productModalTitle').textContent = name;
+        document.getElementById('productModalPrice').textContent = `$${price.toFixed(2)}`;
+        document.getElementById('productModalDescription').textContent = description;
+        document.getElementById('productModalImage').src = image;
+        
+        // Set up features (this is static but could be dynamic)
+        const featuresList = document.getElementById('productModalFeatures');
+        featuresList.innerHTML = `
+            <li>High-quality materials</li>
+            <li>1-year manufacturer warranty</li>
+            <li>Free shipping available</li>
+            <li>30-day return policy</li>
+        `;
+        
+        // Update add to cart button in modal
+        document.getElementById('productModalAddToCart').onclick = function() {
+            addToCart(name, price, image);
+            closeProductModal();
+        };
+        
+        document.getElementById('modalBackdrop').classList.remove('hidden');
+        document.getElementById('productModal').classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeProductModal() {
+        document.getElementById('modalBackdrop').classList.add('hidden');
+        document.getElementById('productModal').classList.add('hidden');
+        document.body.style.overflow = 'auto';
+    }
+    // ====== END OF NEW CART FUNCTIONALITY CODE ======
+ 
+</script>
 </body>
 </html>
                
